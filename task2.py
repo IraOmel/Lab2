@@ -11,19 +11,17 @@ class Rational:
             try:
                 reduce_form = Fraction(self.__numerator, self.__denominator)
             except ZeroDivisionError:
-                print("Divided by zero is not possible")
-                quit()
+                quit("Division by zero")
         else:
-            print("Incorrect date")
-            quit()
+            quit("Incorrect date")
 
     def operation(self):
-        print(Fraction(self.__numerator, self.__denominator))
+        return Fraction(self.__numerator, self.__denominator)
 
     def calculation(self):
-        return self.__numerator/self.__denominator
+        return self.__numerator / self.__denominator
 
 
-obj1 = Rational(2, 6)
-obj1.operation()
+obj1 = Rational(2, 0)
+print(obj1.operation())
 print(obj1.calculation())
