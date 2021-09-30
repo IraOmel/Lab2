@@ -15,8 +15,7 @@ class Rectangle:
 
     def set_attributes(self, length, width):
         if length < 0.0 or length > 20.0 or width < 0.0 or width > 20.0:
-            print("Incorrect date")
-            quit()
+            quit("Incorrect date")
         else:
             self.length = length
             self.width = width
