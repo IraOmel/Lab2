@@ -17,14 +17,11 @@ class Rectangle:
         if length < 0.0 or length > 20.0 or width < 0.0 or width > 20.0:
             print("Incorrect date")
             quit()
-        elif type(length) is float and type(width) is float:
+        else:
             self.length = length
             self.width = width
-        else:
-            print("Incorrect date")
-            quit()
 
 
 obj1 = Rectangle()
-obj1.set_attributes(5.0, 2.0)
+obj1.set_attributes(float(input("Length:")), float(input("Width:")))
 print(obj1.get_attributes())
