@@ -13,7 +13,7 @@ class Rational:
             except ZeroDivisionError:
                 quit("Division by zero")
         else:
-            quit("Incorrect date")
+            raise TypeError("Incorrect date")
 
     def operation(self):
         return Fraction(self.__numerator, self.__denominator)
@@ -22,6 +22,6 @@ class Rational:
         return self.__numerator / self.__denominator
 
 
-obj1 = Rational(2, 0)
+obj1 = Rational(2, 4)
 print(obj1.operation())
 print(obj1.calculation())
