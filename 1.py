@@ -1,5 +1,6 @@
 class Product:
-    'a class that describes a product '
+    """a class that describes a product"""
+
     def __init__(self, price, description, dimensions):
         self.price = price
         self.description = description
@@ -7,7 +8,8 @@ class Product:
 
 
 class Customer:
-    'a class that describes a customer'
+    """a class that describes a customer"""
+
     def __init__(self, surname, name, patronymic, phone):
         self.surname = surname
         self.name = name
@@ -18,12 +20,12 @@ class Customer:
         return f'Customer:{self.surname} {self.name} {self.patronymic}, {self.phone}\n'
 
 
-class Order(Customer, Product):
-    'class that contain date about customer and product'
+class Order(Product):
+    """class that contain date about customer and product"""
     sum = 0
 
-    def __init__(self, surname, name, patronymic, phone):
-        Customer.__init__(self, surname, name, patronymic, phone)
+    def __init__(self, customer):
+        self.customer = customer
 
     def buy_product(self, price, description, dimensions):
         Product.__init__(self, price, description, dimensions)
@@ -32,15 +34,14 @@ class Order(Customer, Product):
     def total_value(self):
         return self.sum
 
-    def get(self):
-        return f'{Customer.output(self)}'
 
-
-order_1 = Order("Omel", "Ira", "Romanivna", 3809702)
+customer_1 = Customer("Omel", "Ira", "Romanivna", 3809702)
+order_1 = Order(customer_1)
 order_1.buy_product(10, "Cup", 21)
 order_1.buy_product(200, "Book", 21)
-order_2 = Order("Dovga", "Oksana", "Igorivna", 38097)
+customer_2 = Customer("Dovga", "Oksana", "Igorivna", 38097)
+order_2 = Order(customer_2)
 order_2.buy_product(111, "Notebook", 21)
 order_2.buy_product(22, "Pencil", 21)
-print(order_1.get() + "Total value 1 order: " + str(order_1.total_value()))
-print(order_2.get() + "Total value 2 order: " + str(order_2.total_value()))
+print(customer_1.output() + "Total value 1 order: " + str(order_1.total_value()))
+print(customer_2.output() + "Total value 2 order: " + str(order_2.total_value()))
