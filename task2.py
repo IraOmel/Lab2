@@ -4,16 +4,12 @@ from fractions import Fraction
 
 class Rational:
     def __init__(self, numerator=1, denominator=1):
+        if not isinstance(numerator, int) or not isinstance(denominator, int):
+            raise TypeError("Incorrect data")
+        if not denominator:
+            raise ZeroDivisionError("Incorrect data")
         self.__numerator = numerator
         self.__denominator = denominator
-
-        if type(self.__numerator) is int and type(self.__denominator) is int:
-            try:
-                reduce_form = Fraction(self.__numerator, self.__denominator)
-            except ZeroDivisionError:
-                quit("Division by zero")
-        else:
-            raise TypeError("Incorrect date")
 
     def operation(self):
         return Fraction(self.__numerator, self.__denominator)

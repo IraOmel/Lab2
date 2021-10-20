@@ -13,16 +13,30 @@ class Rectangle:
     def get_attributes(self):
         return self.perimeter(), self.area()
 
-    def set_attributes(self, length, width):
-        if length < 0.0 or length > 20.0 or width < 0.0 or width > 20.0:
-            raise ValueError("Incorrect date")
-        elif not isinstance(length,float) and not isinstance(width,float) :
-            raise TypeError("Incorrect date")
-        else:
-            self.length = length
-            self.width = width
+    @property
+    def length(self):
+        return self._length
+
+    @property
+    def width(self):
+        return self._width
+    @length.setter
+    def length(self, length):
+
+        if not isinstance(length, float):
+            raise TypeError("Incorrect data")
+        if length < 0.0 or length > 20.0:
+            raise ValueError("Incorrect data")
+        self._length = length
+
+    @width.setter
+    def width(self, width):
+        if not isinstance(width, float):
+            raise TypeError("Incorrect data")
+        if width < 0.0 or width > 20.0:
+            raise ValueError("Incorrect data")
+        self._width = width
 
 
-obj1 = Rectangle()
-obj1.set_attributes(float(input("Length:")), float(input("Width:")))
+obj1 = Rectangle(2.4,1.3)
 print(obj1.get_attributes())
