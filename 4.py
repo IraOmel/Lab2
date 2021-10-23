@@ -17,12 +17,12 @@ class BinaryTree:
             if code == self.code:
                 raise ValueError("the code cannot be repeated")
             if code < self.code:
-                if self.left is None:
+                if not self.left:
                     self.left = BinaryTree(code, price)
                 else:
                     self.left.insert(code, price)
             elif code > self.code:
-                if self.right is None:
+                if not self.right:
                     self.right = BinaryTree(code, price)
                 else:
                     self.right.insert(code, price)
@@ -32,11 +32,11 @@ class BinaryTree:
     def find_price(self, code):
         """"A function that return price of product by its code."""
         if code < self.code:
-            if self.left is None:
+            if not self.left:
                 raise ValueError("not found")
             return self.left.find_price(code)
         elif code > self.code:
-            if self.right is None:
+            if not self.right:
                 raise ValueError("not found")
             return self.right.find_price(code)
         else:

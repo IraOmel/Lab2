@@ -2,31 +2,84 @@ class Product:
     """A class that describes a product."""
 
     def __init__(self, price, description):
-        if not isinstance(price,int) or not isinstance(description,str) :
-            raise TypeError("incorrect type")
-        if price < 0 or not description:
-            raise ValueError("incorrect value")
         self.price = price
         self.description = description
 
+    @property
+    def price(self):
+        return self._price
+
+    @property
+    def description(self):
+        return self._description
+
+    @price.setter
+    def price(self, price):
+        if not isinstance(price, int):
+            raise TypeError("incorrect type")
+        if price < 0 or not price:
+            raise ValueError("incorrect value")
+        self._price = price
+
+    @description.setter
+    def description(self, description):
+        if not isinstance(description, str):
+            raise TypeError("incorrect type")
+        if not description or not all(letter.isalpha() for letter in description):
+            raise ValueError("incorrect value")
+        self._description = description
+
     def __str__(self):
         return f'Product: {self.price}, {self.description}'
+
 
 class Customer:
     """A class that describes a customer."""
 
     def __init__(self, surname, name, phone):
-        if not isinstance(surname, str) or not isinstance(name, str) or not isinstance(phone,int):
-            raise TypeError("Incorrect type")
-        if not all(letter.isalpha() for letter in surname) or not all(letter.isalpha() for letter in name):
-            raise ValueError("Invalid name, surname")
-        if not surname or not name or not phone:
-            raise ValueError("string is empty")
-        else:
-          self.surname = surname
-          self.name = name
-          self.phone = phone
+            self.surname = surname
+            self.name = name
+            self.phone = phone
 
+    @property
+    def surname(self):
+        return self._surname
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def phone(self):
+        return self._phone
+
+    @surname.setter
+    def surname(self, surname):
+        if not isinstance(surname, str):
+            raise TypeError("Incorrect type")
+        if not all(letter.isalpha() for letter in surname):
+            raise ValueError("Invalid name, surname")
+        if not surname:
+            raise ValueError("string is empty")
+        self._surname = surname
+
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise TypeError("Incorrect type")
+        if not all(letter.isalpha() for letter in name):
+            raise ValueError("Invalid name, surname")
+        if not name:
+            raise ValueError("string is empty")
+        self._name = name
+
+    @phone.setter
+    def phone(self, phone):
+        if not isinstance(phone, int):
+            raise TypeError("Incorrect type")
+        if not phone:
+            raise ValueError("string is empty")
+        self._phone = phone
 
     def __str__(self):
         return f'Customer:{self.surname} {self.name}, {self.phone}'
@@ -42,17 +95,17 @@ class Order():
         self.products = []
 
     def add_product(self, product):
-        """"Function that add the product at empty list 'products'."""
+        """"Method that add the product at empty list 'products'."""
         self.products.append(product)
 
     def del_product(self, product):
-        """"Function that delete the product from list 'products'."""
+        """"Method that delete the product from list 'products'."""
         if not isinstance(product, Product):
             raise TypeError
         self.products.remove(product)
 
     def total_value(self):
-        """"Function that count and return the total value of product in order."""
+        """"Method that count and return the total value of product in order."""
         summa = 0
         for item in self.products:
             summa += item.price
